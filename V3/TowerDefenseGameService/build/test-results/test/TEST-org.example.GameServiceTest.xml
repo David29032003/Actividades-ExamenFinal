@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.GameServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-07-03T06:31:19" hostname="LAPTOP-662VNBS9" time="4.712">
+<testsuite name="org.example.GameServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-07-03T18:07:19" hostname="david-TUF-GAMING-FX504GE-FX80GE" time="1.736">
   <properties/>
-  <testcase name="testPlaceTower()" classname="org.example.GameServiceTest" time="4.712"/>
+  <testcase name="testPlaceTower()" classname="org.example.GameServiceTest" time="1.736"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

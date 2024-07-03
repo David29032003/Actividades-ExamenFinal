@@ -7,7 +7,7 @@ torres estratégicamente en el mapa. Para las pruebas unitarias
 y de integración, se utilizarán mocks, stubs y fakes con Mockito 
 y pruebas de mutación.
 
-## Estructura de la V3
+## Actividad V3
 
 El proyecto consta de varios microservicios en Java que 
 colaboran para crear un juego de defensa de torres. 
@@ -17,12 +17,12 @@ de enemigos.
 
 Las principales clases del proyecto son:
 
-1. Microservicio de Juego (`GameService`): Controla la lógica general del juego.
-2. Microservicio de Jugador (`PlayerService`): Representa al jugador y sus estadísticas.
-3. Microservicio de Mapa (`MapService`): Administra la representación y manipulación del mapa.
-4. Microservicio de Enemigos (`EnemyService`): Gestiona la creación y comportamiento de los enemigos.
-5. Microservicio de Torres (`TowerService`): Administra la creación y comportamiento de las torres.
-6. Microservicio de Oleadas (`WaveService`): Maneja la lógica de las oleadas de enemigos.
+1. Microservicio de Juego (GameService): Controla la lógica general del juego.
+2. Microservicio de Jugador (PlayerService): Representa al jugador y sus estadísticas.
+3. Microservicio de Mapa (MapService): Administra la representación y manipulación del mapa.
+4. Microservicio de Enemigos (EnemyService): Gestiona la creación y comportamiento de los enemigos.
+5. Microservicio de Torres (TowerService): Administra la creación y comportamiento de las torres.
+6. Microservicio de Oleadas (WaveService): Maneja la lógica de las oleadas de enemigos.
 
 ### Inputs y Outputs
 
@@ -38,8 +38,8 @@ Las principales clases del proyecto son:
 
 ### 1. GameService
 
-El microservicio `GameService` es el controlador principal del juego y maneja la 
-lógica central, coordinando la interacción entre los diferentes microservicios.
+El microservicio `GameService` funciona como el controlador principal del juego y maneja la 
+lógica central.
 ```java
 package org.example;
 
@@ -254,7 +254,7 @@ indica que la oleada ha comenzado, proporcionando retroalimentación visual sobr
 Inicié la ejecución del juego mediante el método main() de la clase GameService
 Salida en la consola:
 
-![Captura1.PNG](Imagenes/Untitled.PNG)
+![Captura1.PNG](Imagenes1/cap1.png)
 
 El juego ha comenzado sin problemas, mostrando inicialmente el mapa del juego, la puntuación 
 inicial del jugador y la salud de la base, que está en 100 puntos.
@@ -271,110 +271,35 @@ de las aplicaciones.
 
 Este archivo Dockerfile permite la creación de una imagen Docker 
 para el servicio GameService, que actúa como el controlador principal del juego.
-```
-#Utilizo una imagen base de OpenJDK 17 
-FROM openjdk:17
 
-#Establezco el directorio de trabajo en /app
-WORKDIR /app
-
-#Copio todos los archivos del directorio actual al directorio de trabajo dentro del contenedor
-COPY . /app
-
-#Ejecuto el comando para compilar el archivo GameService.java
-RUN chmod +x ./gradlew build
-
-#Defino el comando por defecto para ejecutar el servicio Java
-CMD ["java", "-cp", "src/main/java/org/example", "GameService"]
-```
+![Captura1.PNG](Imagenes1/cap19.png)
 
 ### 2. Dockerfile para MapService
 
 Esta clase `MapService` se encarga de crea una imagen Docker para, que administra 
 el estado del mapa del juego.
 
-```
-#Utilizo una imagen base de OpenJDK 17
-FROM openjdk:17
-
-#Establezco el directorio de trabajo en /app
-WORKDIR /app
-
-#Copio todos los archivos del directorio actual al directorio de trabajo dentro del contenedor
-COPY . /app
-
-#Ejecuto el comando para compilar el archivo MapService.java
-RUN chmod +x ./gradlew build
-
-#Defino el comando por defecto para ejecutar el servicio
-CMD ["java", "-cp", "src/main/java/org/example", "MapService"]
-```
+![Captura1.PNG](Imagenes1/cap20.png)
 
 ### 3. Dockerfile para PlayerService
 
 Esta clase `PlayerService` crea una imagen Docker para, que gestiona la 
 puntuación y la vida de la base del jugador.
 
-```
-#Utilizo una imagen base de OpenJDK 17 
-FROM openjdk:17
-
-#Establezco el directorio de trabajo en /app
-WORKDIR /app
-
-#Copio todos los archivos del directorio actual al directorio de trabajo dentro del contenedor
-COPY . /app
-
-#Ejecuto el comando para compilar el archivo PlayerService.java
-RUN chmod +x ./gradlew build
-
-#Defino el comando por defecto para ejecutar el servicio
-CMD ["java", "-cp", "src/main/java/org/example", "PlayerService"]
-```
+![Captura1.PNG](Imagenes1/cap21.png)
 
 ### 4. Dockerfile para TowerService
 
 Esta clase `TowerService` crea  de Docker para el, que representa una torre en el juego.
 
-```
-#Utilizo una imagen base con OpenJDK 17
-FROM openjdk:17
-
-#Creo y cambio el directorio /app
-WORKDIR /app
-
-#Copio todos los archivos del directorio actual al directorio de trabajo en el contenedor
-COPY . /app
-
-#Compilo el archivo TowerService.java
-RUN javac TowerService.java
-
-#Defino el comando predeterminado para ejecutar el servicio java, nombre del microseervicio
-CMD ["java", "TowerService"]
-
-```
+![Captura1.PNG](Imagenes1/cap22.png)
 
 ### 5. Dockerfile para WaveService
 
 Esta clase `WaveService` genera una imagen Docker para, responsable de gestionar 
 la lógica de las oleadas de enemigos.
 
-```
-#Utilizo una imagen base de OpenJDK 17
-FROM openjdk:17
-
-#Establezco el directorio de trabajo en /app
-WORKDIR /app
-
-#Copio todos los archivos del directorio actual al directorio de trabajo dentro del contenedor
-COPY . /app
-
-#Compilo el archivo WaveService.java
-RUN javac WaveService.java
-
-#Define el comando por defecto para ejecutar el servicio Java
-CMD ["java", "WaveService"]
-```
+![Captura1.PNG](Imagenes1/cap23.png)
 
 Para construir las imágenes de cada microservicio, ejecutamos el siguiente comando:
 
@@ -390,7 +315,7 @@ Ejecutamos el comando:
 docker build -t gameservice-image -f DockerfileGameService .
 ```
 
-![Captura1.PNG](Imagenes/Captura1.PNG)
+![Captura1.PNG](Imagenes1/cap2.png)
 
 **Explicación**: La salida muestra la fecha de creación de la imagen 
 gameservice-image y confirma su creación exitosa. Además, 
@@ -405,7 +330,7 @@ Ejecutamos el comando:
 docker build -t mapservice-image -f DockerfileMapService .
 ```
 
-![Captura1.PNG](Imagenes/Captura2.PNG)
+![Captura1.PNG](Imagenes1/cap3.png)
 
 **Explicación**: La salida muestra la fecha de creación de la 
 imagen mapservice-image y confirma su creación exitosa. Además, se presenta 
@@ -420,7 +345,7 @@ Ejecutamos el comando:
 docker build -t playerservice-image -f DockerfilePlayerService .
 ```
 
-![Captura1.PNG](Imagenes/Captura3.PNG)
+![Captura1.PNG](Imagenes1/cap4.png)
 
 **Explicación**: La salida muestra la fecha de creación de la imagen 
 playerservice-image y confirma su creación exitosa. Además, se 
@@ -435,7 +360,7 @@ Ejecutamos el comando:
 docker build -t towerservice-image -f DockerfileTowerService .
 ```
 
-![Captura1.PNG](Imagenes/Captura4.PNG)
+![Captura1.PNG](Imagenes1/cap5.png)
 
 Explicación: La salida muestra la fecha de creación de la imagen 
 towerservice-image y confirma su creación exitosa. Además, se presenta el 
@@ -450,7 +375,7 @@ Ejecutamos el comando:
 docker build -t waveservice-image -f DockerfileWaveService .
 ```
 
-![Captura1.PNG](Imagenes/Captura5.PNG)
+![Captura1.PNG](Imagenes1/cap6.png)
 
 **Explicación**: La salida muestra la fecha de creación de la 
 imagen waveservice-image y confirma su creación exitosa. Además, 
@@ -629,10 +554,11 @@ Estos volúmenes se emplean para preservar datos más allá del ciclo de vida de
 contenedor, garantizando que la información no se pierda al detener o recrear 
 los contenedores.
 
-Posteriormente, al ejecutar el comando docker-compose up -d, se despliegan 
+Posteriormente, al ejecuto el comando docker-compose up -d, se despliegan 
 los contenedores correspondientes:
 
-![Captura1.PNG](Imagenes/Captura6.PNG)
+![Captura1.PNG](Imagenes1/cap7.png)
+![Captura1.PNG](Imagenes1/cap8.png)
 
 La imagen anterior indica que todos los contenedores definidos en el archivo `docker-compose.yml` se han inicializado correctamente. Cada contenedor asociado a los microservicios `gameservice`, `mapservice`, `playerservice`, `towerservice`, y `waveservice` se encuentra en estado "Started".
 
@@ -801,15 +727,7 @@ kubectl apply -f tower-deployment.yaml
 kubectl apply -f wave-deployment.yaml
 ```
 
-![Captura1.PNG](Imagenes/Captura7.PNG)
-
-![Captura1.PNG](Imagenes/Captura8.PNG)
-
-![Captura1.PNG](Imagenes/Captura9.PNG)
-
-![Captura1.PNG](Imagenes/Captura10.PNG)
-
-![Captura1.PNG](Imagenes/Captura11.PNG)
+![Captura1.PNG](Imagenes1/cap9.png)
 
 Puedo ver que en cada imagen que cada microservicio se ha creado correctamente 
 en el cluster de kubernets 
@@ -940,16 +858,7 @@ kubectl apply -f tower-service.yaml
 kubectl apply -f wave-service.yaml
 ```
 
-![Captura1.PNG](Imagenes/Captura14.PNG)
-
-![Captura1.PNG](Imagenes/Captura15.PNG)
-
-![Captura1.PNG](Imagenes/Captura13.PNG)
-
-![Captura1.PNG](Imagenes/Captura11.PNG)
-
-
-![Captura1.PNG](Imagenes/Captura12.PNG)
+![Captura1.PNG](Imagenes1/cap10.png)
 
 Podemos observar que en cada imagen que cada servicio se ha creado 
 correctamente en el cluster de kubernets 
@@ -963,11 +872,8 @@ kubectl get pods
 kubectl get services
 ```
 
-Con el primer comando listara
-
-![Captura1.PNG](Imagenes/Captura16.PNG)
-
-![Captura1.PNG](Imagenes/Captura17.PNG)
+![Captura1.PNG](Imagenes1/cap11.png)
+![Captura1.PNG](Imagenes1/cap12.png)
 
 **Explicación**: La imagen anterior presenta una lista completa de todos 
 los pods en el clúster, ofreciendo detalles básicos como el nombre del pod, 
@@ -1026,7 +932,8 @@ test {
 
 Con el comando `.\gradlew build` construyo el archivo gradle :
 
-![Captura1.PNG](Imagenes/Captura18.PNG)
+![Captura1.PNG](Imagenes1/cap13.png)
+![Captura1.PNG](Imagenes1/cap16.png)
 
 Observo que la ejecución fue éxitosa al construirse correctamente el 
 archivo build.gradle
@@ -1105,7 +1012,7 @@ Ahora ejecutaremos la prueba:
 
 ![Captura1.PNG](Imagenes/Captura19.PNG)
 
-![Captura1.PNG](Imagenes/Captura20.PNG)
+![Captura1.PNG](Imagenes1/cap14.png)
 
 La imagen anterior muestra que la prueba testPlaceTower de la clase  GameServiceTest
 se ejecuto  y paso correctamente .
@@ -1120,7 +1027,92 @@ Me dirigimos al archivo `build.gradle` para añadir el id de pitest al plugins d
 Después de añadir la dependencia para usar pitest con gradle al conjunto 
 de dependencias del archivo build.gradle, configuro el plugin de pitest de la siguiente manera: 
 
-![Captura1.PNG](Imagenes/Captura21.PNG)
+```java
+plugins {
+    id 'java'
+    // https://gradle-pitest-plugin.solidsoft.info/
+//    id 'info.solidsoft.pitest' version '1.15.0'
+    // https://docs.gradle.org/current/userguide/jacoco_plugin.html
+    id 'jacoco' // Plugin de JaCoCo
+    id 'info.solidsoft.pitest' version '1.15.0'
+}
+
+group = 'com.jhaner'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.assertj:assertj-core:3.25.3'
+    testImplementation 'org.jetbrains:annotations:24.0.0'
+    //dependencia para usar mockito
+    implementation group: 'org.mockito', name: 'mockito-core', version: '5.12.0'
+    //dependencia para usar pitest
+    pitest 'org.pitest:pitest-junit5-plugin:1.1.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+pitest {
+    targetClasses = ['org.example.*'] // Paquete de clases a mutar
+    mutators = ['DEFAULTS'] // Conjunto de mutadores [OLD_DEFAULTS, DEFAULTS, STRONGER, ALL]
+    outputFormats = ['HTML'] // Formato de salida del informe
+    timestampedReports = false // Deshabilitar informes con marca de tiempo para facilitar la navegación
+    verbose = true
+}
+// pitest
+//pitest {
+//    targetClasses = ['com.jhaner.*'] // Paquete de clases a mutar
+//    mutators = ['DEFAULTS'] // Conjunto de mutadores por defecto
+//    outputFormats = ['HTML'] // Formato de salida del informe
+//    timestampedReports = false // Deshabilitar informes con marca de tiempo para facilitar la navegación
+//}
+
+// jacoco
+jacoco {
+    toolVersion = "0.8.12" // Versión de JaCoCo (compatible con java 21)
+}
+
+jacocoTestReport {
+//    dependsOn test // Ejecuta las pruebas antes de generar el informe
+//
+//    reports {
+//        xml.required.set(true)
+//        html.required.set(true)
+//    }
+    reports {
+        xml.required = true  // Update with required
+        csv.required = true
+        html.required = true
+    }
+}
+//pitest {
+//    junit5PluginVersion = '1.0.0'
+//}
+
+/*
+// Configuración de cobertura mínima requerida si no se cumple, el build fallará
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.8 // 80% de cobertura mínima requerida
+            }
+        }
+    }
+}
+*/
+
+check.dependsOn jacocoTestCoverageVerification
+
+// ./gradlew pitest
+// ./gradlew jacocoTestReport
+```
 
 ### Ejecutar Pitest
 
@@ -1130,10 +1122,12 @@ Para ejecutar Pitest, utiliza el siguiente comando:
 ./gradlew pitest
 ```
 
+![Captura1.PNG](Imagenes1/cap17.png)
+
 Este comando me generará un informe de mutación para el proyecto, 
 evaluando la calidad de las pruebas unitarias que he creado : 
 
-![Captura1.PNG](Imagenes/Captura23.PNG)
+![Captura1.PNG](Imagenes1/cap18.png)
 
 1. **GameService.java**
     - Cobertura de Línea: 33% (7 de 21 líneas)
